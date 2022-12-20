@@ -2,6 +2,7 @@ from django.db import models
 import re
 from ckeditor.fields import RichTextField
 
+
 class Information(models.Model):
     name_complete = models.CharField(max_length=50, blank=True, null=True)
     avatar = models.ImageField(upload_to="avatar/", blank=True, null=True)
@@ -12,7 +13,7 @@ class Information(models.Model):
     phone = models.CharField(max_length=20, blank=True, null=True)
     email = models.EmailField(max_length=255, blank=True, null=True)
 
-    cv = models.FileField(upload_to='cv', blank=True, null=True)
+    cv = models.FileField(upload_to="cv", blank=True, null=True)
 
     # Social Network
     github = models.URLField(blank=True, null=True)
@@ -20,6 +21,7 @@ class Information(models.Model):
     facebook = models.URLField(blank=True, null=True)
     twitter = models.URLField(blank=True, null=True)
     instagram = models.URLField(blank=True, null=True)
+    youtube = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return self.name_complete
@@ -28,7 +30,7 @@ class Information(models.Model):
 class Competence(models.Model):
     title = models.CharField(max_length=50, blank=False, null=False)
     description = models.TextField(blank=False, null=False)
-    image = models.FileField(upload_to='competence/', blank=False, null=False)
+    image = models.FileField(upload_to="competence/", blank=False, null=False)
 
     def __str__(self):
         return self.title
