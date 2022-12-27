@@ -31,9 +31,11 @@ def email_send(data):
         return False
     subject = "Portfolio : Mail from {}".format(data["name"])
     message = "{}\nSender Email: {}".format(data["message"], data["email"])
-    email_from = settings.EMAIL_HOST_USER
+    # email_from = settings.EMAIL_HOST_USER
+    email_from = "codingwithitz@gmail.com"
     recipient_list = [
-        settings.EMAIL_HOST_USER,
+        # settings.EMAIL_HOST_USER,
+        "codingwithitz@gmail.com",
     ]
     send_mail(subject, message, email_from, recipient_list)
     return True
