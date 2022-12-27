@@ -6,6 +6,7 @@ import json
 import os
 from django.db.models import Q
 from dotenv import load_dotenv
+from django.core.mail import EmailMessage
 
 from django.core.mail import send_mail
 from django.conf import settings
@@ -44,27 +45,39 @@ def homePage(request):
     context = {}
 
     if request.method == "POST":
-        if request.POST.get():
-            form = MessageForm(request.POST)
-            if form.is_valid():
-                form.save(commit=False)
-                data = {
-                    "name": request.POST["name"],
-                    "email": request.POST["email"],
-                    "message": request.POST["message"],
-                }
-                if email_send(data):
-                    form.save()
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            from_email = "codingwithhitz@gmail.com"
+            message = "This is a test"
+            to_email = "alexgithui91@gmail.com"
+            mail_subject = "Subject of the test"
+            mail = EmailMessage(
+                mail_subject, message, from_email, to=[to_email]
+            )
+            mail.send()
 
-                return JsonResponse({"success": True})
-            else:
-                return JsonResponse({"success": False, "errors": form.errors})
-        return JsonResponse(
-            {
-                "success": False,
-                "errors": "Oops, you have to check the recaptcha !",
-            }
-        )
+    # if request.method == "POST":
+    #     if request.POST.get():
+    #         form = MessageForm(request.POST)
+    #         if form.is_valid():
+    #             form.save(commit=False)
+    #             data = {
+    #                 "name": request.POST["name"],
+    #                 "email": request.POST["email"],
+    #                 "message": request.POST["message"],
+    #             }
+    #             if email_send(data):
+    #                 form.save()
+
+    #             return JsonResponse({"success": True})
+    #         else:
+    #             return JsonResponse({"success": False, "errors": form.errors})
+    #     return JsonResponse(
+    #         {
+    #             "success": False,
+    #             "errors": "Oops, you have to check the recaptcha !",
+    #         }
+    #     )
 
     if request.method == "GET":
         form = MessageForm()
