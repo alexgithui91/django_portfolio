@@ -91,12 +91,12 @@ WSGI_APPLICATION = "portfolio.wsgi.application"
 #     }
 
 # Storage settings
-CLOUDINARY_STORAGE = {
-    "CLOUD_NAME": os.getenv("CLOUD_NAME", default=""),
-    "API_KEY": os.getenv("API_KEY", default=""),
-    "API_SECRET": os.getenv("API_SECRET", default=""),
-}
-DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+# CLOUDINARY_STORAGE = {
+#     "CLOUD_NAME": os.getenv("CLOUD_NAME", default=""),
+#     "API_KEY": os.getenv("API_KEY", default=""),
+#     "API_SECRET": os.getenv("API_SECRET", default=""),
+# }
+# DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
 # else:
 #     DATABASES = {
