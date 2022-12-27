@@ -31,11 +31,9 @@ def email_send(data):
         return False
     subject = "Portfolio : Mail from {}".format(data["name"])
     message = "{}\nSender Email: {}".format(data["message"], data["email"])
-    # email_from = settings.EMAIL_HOST_USER
-    email_from = "codingwithitz@gmail.com"
+    email_from = settings.EMAIL_HOST_USER
     recipient_list = [
-        # settings.EMAIL_HOST_USER,
-        "codingwithitz@gmail.com",
+        settings.EMAIL_HOST_USER,
     ]
     send_mail(subject, message, email_from, recipient_list)
     return True
@@ -46,7 +44,7 @@ def homePage(request):
     context = {}
 
     if request.method == "POST":
-        if request.POST.get("rechaptcha", None):
+        if request.POST.get():
             form = MessageForm(request.POST)
             if form.is_valid():
                 form.save(commit=False)
